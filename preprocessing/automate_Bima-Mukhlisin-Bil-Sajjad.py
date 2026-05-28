@@ -80,6 +80,10 @@ def preprocess_data(raw_csv_path, output_csv_path):
     return df_encoded
 
 if __name__ == '__main__':
-    raw_path = r"c:\Users\bimam\Downloads\Eksperimen_SML_Bima Mukhlisin Bil Sajjad\heart_disease_raw\heart-disease.csv"
-    output_path = r"c:\Users\bimam\Downloads\Eksperimen_SML_Bima Mukhlisin Bil Sajjad\preprocessing\heart_disease_preprocessing\heart-disease-preprocessed.csv"
+    # Resolve project root dynamically (works locally and in GitHub Actions environment)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(current_dir) if os.path.basename(current_dir) == "preprocessing" else current_dir
+    
+    raw_path = os.path.join(project_root, "heart_disease_raw", "heart-disease.csv")
+    output_path = os.path.join(project_root, "preprocessing", "heart_disease_preprocessing", "heart-disease-preprocessed.csv")
     preprocess_data(raw_path, output_path)
