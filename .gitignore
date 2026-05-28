@@ -1,0 +1,13 @@
+.venv/
+SMSML_Bima-Mukhlisin-Bil-Sajjad/
+SMSML_Bima-Mukhlisin-Bil-Sajjad.zip
+Membangun_model/
+Workflow-CI/
+Monitoring dan Logging/
+mlruns/
+mlartifacts/
+metrics_plots/
+__pycache__/
+.ipynb_checkpoints/
+download_data.py
+*.txt

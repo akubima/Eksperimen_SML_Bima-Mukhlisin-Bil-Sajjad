@@ -1,0 +1,36 @@
+name: Preprocessing Automation Workflow
+
+on:
+  push:
+    paths:
+      - 'heart_disease_raw/**'
+  workflow_dispatch:
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          pip install pandas numpy scikit-learn
+
+      - name: Run Preprocessing Script
+        run: |
+          # Adjust path since Actions runs from root of repository
+          python preprocessing/automate_Bima-Mukhlisin-Bil-Sajjad.py
+
+      - name: Commit and Push Preprocessed Data
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add preprocessing/heart_disease_preprocessing/heart-disease-preprocessed.csv
+          git diff-index --quiet HEAD || git commit -m "chore: auto-update preprocessed dataset"
+          git push
