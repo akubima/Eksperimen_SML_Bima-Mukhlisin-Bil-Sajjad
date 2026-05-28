@@ -2,8 +2,9 @@ name: Preprocessing Automation Workflow
 
 on:
   push:
-    paths:
-      - 'heart_disease_raw/**'
+    branches:
+      - main
+      - master
   workflow_dispatch:
 
 jobs:
